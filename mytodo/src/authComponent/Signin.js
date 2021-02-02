@@ -4,7 +4,7 @@ import {Avatar, ThemeProvider, TextField, createMuiTheme, Button} from "@materia
 import {blue} from '@material-ui/core/colors';
 import {auth} from "./config";
 
-import overlay from "../imgsrc/overlay.jpg"
+import overlay from "../imgsrc/overlay.jpg";
 import '../Main.css';
 
 const theme = createMuiTheme({
