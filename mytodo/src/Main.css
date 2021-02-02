@@ -97,3 +97,52 @@ body{
     justify-content: space-between;
     align-items: center;
 }
+
+/*login-container*/
+
+.error-msg{
+    width: 30vw;
+    height: 50px;
+    background-color: rgba(255, 0, 0, 0.3);
+    border-radius: 10px;
+    text-align: center;
+    padding: 3px;
+}
+
+.display-none{
+    display: none;
+}
+
+.login-left{
+    width: 50vw;
+    height: 100%;
+}
+
+.login-container{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.input-fields{
+    width: 30vw;
+    height: 50px;
+    margin: 20px auto;
+}
+
+.login-btn{
+    width: 30vw;
+}
+
+.avatar{
+    margin: 5px auto;
+}
+.space{
+    height: 10px;
+}
+
+.login-txt{
+    text-align: center;
+    font-weight: bold;
+    font-size: 32px;
+}

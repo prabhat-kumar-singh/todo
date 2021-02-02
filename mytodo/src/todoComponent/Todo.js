@@ -126,19 +126,22 @@ const Todo = (props) => {
         }
 
         console.log("uid of user: ", props.uid);
-
-        try{
-        db.collection('users')
-        .doc(props.uid)
-        .collection('userData')
-        .doc(date)
-        .collection('todos')
-        .orderBy("timestamp", 'desc')
-        .onSnapshot(snapshot => {
-            setTodos(snapshot.docs.map(doc => ({id: doc.id, todoItem: doc.data()})));
-        })
-        }catch{
-            console.log("Unable to fetch user Data")
+        if(props.uid){
+            try{
+            db.collection('users')
+            .doc(props.uid)
+            .collection('userData')
+            .doc(date)
+            .collection('todos')
+            .orderBy("timestamp", 'desc')
+            .onSnapshot(snapshot => {
+                setTodos(snapshot.docs.map(doc => ({id: doc.id, todoItem: doc.data()})));
+            })
+            }catch{
+                console.log("Unable to fetch user Data")
+            }
+        }else{
+            console.log("Failed to load data");
         }
     }
 
