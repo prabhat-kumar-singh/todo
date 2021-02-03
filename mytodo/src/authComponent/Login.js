@@ -1,4 +1,4 @@
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {Link, useHistory} from "react-router-dom";
 import {Avatar, ThemeProvider, TextField, createMuiTheme, Button} from "@material-ui/core";
 import {blue} from '@material-ui/core/colors';
