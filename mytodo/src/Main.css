@@ -58,7 +58,8 @@ body{
     width: 40vw;
     height: 50px;
     font-size: 28px;
-    border: 2px solid #e5e5e5; 
+    border: 2px solid blue; 
+    margin: 10px auto;
 }
 
 .form-element form{
@@ -145,4 +146,30 @@ body{
     text-align: center;
     font-weight: bold;
     font-size: 32px;
+}
+
+.chart-btn1{
+    width: 100%;
+    text-align: center;
+    margin-top: 20px;
+}
+
+/*Chart-container*/
+.chart-btn{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80vw;
+    margin: 10px auto;
+}
+
+.chart-container{
+    height: 100vh;
+    width: 100vw;
+}
+
+.pie-chart{
+    width: 936px;
+    height: 468px;
+    margin: 20px auto;
 }

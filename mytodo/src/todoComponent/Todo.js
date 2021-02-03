@@ -8,6 +8,7 @@ import {db} from "../authComponent/config";
 import todoLeft from "../imgsrc/todoLeft.jpg"
 //import CSS here
 import "../Main.css";
+import ChartComponent from "../ChartComponent";
 
 //Todo Component
 const MainTodo = (props) => {
@@ -80,6 +81,7 @@ const Todo = (props) => {
     const [inputText, setInputText] = useState("");
     const [start, setStart] = useState(false);
     const [choosenDate, setChoosenDate] = useState("");
+    const [chart, setChart] = useState(false);
 
     //convert date to string
     function dateToString(date){
@@ -91,6 +93,7 @@ const Todo = (props) => {
         return day + "-" + month + "-" + year;
     }
 
+    //function to add new totos in the database
     function handleTodos(){
         var date;
         if(choosenDate!==""){
@@ -115,6 +118,7 @@ const Todo = (props) => {
         setInputText("");
     }
 
+    //function to fetch the data of a user from the database
     function fetchTodos(){
         var date;
         if(choosenDate!==""){
@@ -145,9 +149,26 @@ const Todo = (props) => {
         }
     }
 
+    //function to return and add all the todos on the DOM
+    function returnTodos(){
+        if(todos){
+            return(
+                todos.map(todo => {
+                    return <MainTodo 
+                    key = {todo.id} 
+                    todo = {todo.todoItem}
+                    dateToString = {dateToString} 
+                    id = {todo.id}
+                    uid = {props.uid}
+                    choosenDate = {choosenDate}
+                    />
+                })
+            );
+        }
+    }
     useEffect(fetchTodos, [choosenDate])
 
-    if(start){
+    if(start && !chart){
         return(
             <div className = "main-container">
                 <div className = "left-container">
@@ -161,6 +182,7 @@ const Todo = (props) => {
                             handleTodos();
                         }}
                         >
+                        <div className = "space"></div>
                             <input  type = "text"  placeholder = "Enter Todo..."  className = "txt" onChange = {(e) => {setInputText(e.target.value); }} />
                             <Button  variant="contained"  color="primary" type = "submit" className = "btn" > ADD TODO </Button>
                         </form>
@@ -176,21 +198,29 @@ const Todo = (props) => {
                     </div>
 
                     <div className = "todo-container">
-                        {todos.map(todo => {
-                            return <MainTodo 
-                            key = {todo.id} 
-                            todo = {todo.todoItem}
-                            dateToString = {dateToString} 
-                            id = {todo.id}
-                            uid = {props.uid}
-                            choosenDate = {choosenDate}
-                            />
-                        })}
+                        {returnTodos()}
+                        <div className = "chart-btn1">
+                            <Button 
+                            variant = "contained" 
+                            color = "primary" 
+                            onClick = {() => {
+                                setChart(true);
+                            } }
+                            >
+                            Check Your daily Charts
+                            </Button>
+                        </div>
                     </div>
                 </div>
             </div>
         );
-    }else{
+    }
+    else if(chart){
+        return(
+            <ChartComponent setChart = {setChart} uid = {props.uid} choosenDate = {choosenDate} dateToString = {dateToString}/>
+        );
+    }
+    else{
         return(
             <div className = "start-todo">
                 <Button
